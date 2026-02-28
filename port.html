@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justin Lord — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --border: #222222;
+  --text: #e8e4df;
+  --muted: #777770;
+  --accent: #c8421d;
+  --green: #2d6a4f;
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'Instrument Serif', Georgia, serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+/* ── HEADER ── */
+.header {
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.header__name {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.header__role {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.header__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.header__links a {
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.header__links a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(200, 66, 29, 0.08);
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.15s; }
+.section:nth-child(4) { animation-delay: 0.2s; }
+.section:nth-child(5) { animation-delay: 0.25s; }
+.section:nth-child(6) { animation-delay: 0.3s; }
+.section:nth-child(7) { animation-delay: 0.35s; }
+
+.section__label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── SUMMARY ── */
+.summary {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 680px;
+}
+
+.summary strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── SKILLS GRID ── */
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.skill-block {
+  background: var(--surface);
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+}
+
+.skill-block__label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.skill-block__items {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* ── EXPERIENCE ── */
+.job {
+  margin-bottom: 32px;
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.job:hover {
+  border-left-color: var(--accent);
+}
+
+.job::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.job__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.job__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.job__date {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.job__company {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.job__desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.job__bullets {
+  list-style: none;
+  padding: 0;
+}
+
+.job__bullets li {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  padding: 4px 0;
+  padding-left: 16px;
+  position: relative;
+}
+
+.job__bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.job__bullets li strong {
+  font-weight: 600;
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s ease;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-card:hover .project-card__arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.project-card__tag {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.project-card__name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.project-card__desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.project-card__tech {
+  margin-top: 12px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.project-card__arrow {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 14px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: all 0.25s ease;
+}
+
+/* ── WHY SECTION ── */
+.why {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+  font-style: italic;
+}
+
+.why em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__text {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.footer__cta {
+  font-size: 12px;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 8px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+.footer__cta:hover {
+  background: #d94e25;
+  transform: translateY(-1px);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .container { padding: 40px 16px 80px; }
+  .header__name { font-size: 36px; }
+  .skills { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .job__header { flex-direction: column; gap: 2px; }
+  .why { font-size: 17px; }
+}
+
+/* Print styles */
+@media print {
+  body { background: white; color: #1a1a1a; font-size: 11px; }
+  body::after { display: none; }
+  .container { padding: 0; max-width: 100%; }
+  .header__name { color: #1a1a1a; font-size: 28px; }
+  .section__label { color: #c8421d; }
+  .project-card, .skill-block { border-color: #ddd; background: #fafafa; }
+  .job { border-left-color: #ccc; }
+  .job::before { background: #c8421d; }
+  .job__bullets li { color: #333; }
+  .job__bullets li::before { color: #c8421d; }
+  .why { color: #1a1a1a; }
+  .footer__cta { background: #c8421d; color: white; }
+  a { color: inherit; }
+  .header__links a { border-color: #ccc; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="header__name">Justin Lord</h1>
+    <p class="header__role">Software Engineer · Agent Systems · AI Infrastructure</p>
+    <div class="header__links">
+      <a href="https://www.empusaai.com" target="_blank">empusaai.com</a>
+      <a href="https://github.com/justin55afdfdsf5ds45f4ds5f45ds4" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/justin-lord-/" target="_blank">LinkedIn</a>
+      <a href="https://x.com/Justin_lords" target="_blank">X / Twitter</a>
+      <a href="mailto:justinlord@empusaai.com">Email</a>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="section">
+    <div class="section__label">About</div>
+    <p class="summary">
+      11 years building software — started at 8. I specialize in <strong>autonomous AI agent systems</strong>, 
+      trading infrastructure, and production LLM integrations. I build and ship AI-powered products end-to-end: 
+      architecture, code, deployment, revenue. Right now I build and sell AI systems to businesses full-time 
+      through <strong>EmpusaAI</strong>. Deep experience in agent safety, real-capital autonomous execution, 
+      and scaling multi-agent deployments where failure means losing money, not just a bad demo.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="section__label">Technical Skills</div>
+    <div class="skills">
+      <div class="skill-block">
+        <div class="skill-block__label">Languages</div>
+        <div class="skill-block__items">Python, JavaScript/TypeScript, Solidity, SQL</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block__label">AI / LLM</div>
+        <div class="skill-block__items">Claude API, OpenAI API, prompt engineering, inference pipelines, multi-agent orchestration, RAG, eval frameworks</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block__label">Backend / Infra</div>
+        <div class="skill-block__items">Node.js, FastAPI, Express, Supabase, PostgreSQL, MongoDB, Redis, Railway, Vercel, WebSockets</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block__label">Frontend</div>
+        <div class="skill-block__items">React, Next.js, Tailwind CSS</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block__label">Web3 / Crypto</div>
+        <div class="skill-block__items">Sui Move, Solana, Monad, EVM, smart contracts, on-chain agents, Polymarket CLOB API</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block__label">Agent Systems</div>
+        <div class="skill-block__items">Autonomous execution loops, safety guardrails, failure recovery, workflow orchestration, monitoring at scale</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="section__label">Experience</div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__title">Founder & AI Systems Engineer</span>
+        <span class="job__date">2024 — PRESENT</span>
+      </div>
+      <div class="job__company">EmpusaAI — empusaai.com · Mumbai, Remote</div>
+      <div class="job__desc">Build and sell custom AI systems to businesses end-to-end. Sole engineer across full product lifecycle.</div>
+      <ul class="job__bullets">
+        <li>Built <strong>autonomous trading bots on Polymarket</strong> handling real capital: entry logic, position sizing, exit execution, CTF contract redemption — zero human intervention. Safety layers for 24/7 unsupervised operation.</li>
+        <li>Deployed <strong>1,200+ AI agents on Monad blockchain</strong> with pooled capital, committee-based trading decisions, and real-time monitoring dashboard.</li>
+        <li>Shipped <strong>empusaai.com</strong> — consumer AI product with Claude API inference pipeline, Stripe paywall, and Supabase backend. Live with paying users.</li>
+        <li>Built <strong>prediction market arbitrage analysis system</strong> — real-time cross-platform price comparison between Kalshi and Polymarket with automated opportunity detection.</li>
+        <li>Built <strong>AI lead generation backends</strong> with Supabase, PDL/Lusha API integrations, automated scoring, and client-facing dashboards for B2B clients.</li>
+        <li>Ship weekly. Multiple concurrent client projects and products at all times.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__title">Full Stack AI & Web3 Developer</span>
+        <span class="job__date">2022 — 2024</span>
+      </div>
+      <div class="job__company">Freelance & Contract · Remote</div>
+      <ul class="job__bullets">
+        <li>Built AI automation systems for service businesses: missed call recovery, lead follow-up, scheduling, client management dashboards.</li>
+        <li>Developed trading systems integrating prediction market APIs, real-time data feeds, and automated execution strategies.</li>
+        <li>Created content automation tools using social media APIs, engagement velocity analysis, and trend detection pipelines.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__header">
+        <span class="job__title">Self-Taught Software Engineer</span>
+        <span class="job__date">2015 — 2022</span>
+      </div>
+      <div class="job__company">Independent · Started at age 8</div>
+      <ul class="job__bullets">
+        <li>Progressed through web development, backend systems, APIs, databases, then AI and blockchain over 7 years of self-directed engineering.</li>
+        <li>Built and shipped multiple projects across web, mobile, and blockchain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <div class="section__label">Live Projects</div>
+    <div class="projects-grid">
+
+      <a href="https://www.empusaai.com" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Consumer AI</div>
+        <div class="project-card__name">EmpusaAI</div>
+        <div class="project-card__desc">AI tool that tells people what makes them irreplaceable by AI. Claude API inference, Stripe payments, live counter, shareable result cards.</div>
+        <div class="project-card__tech">React · Claude API · Stripe · Supabase · Vercel</div>
+      </a>
+
+      <a href="https://fund-agent.vercel.app/#dashboard" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Agent Platform</div>
+        <div class="project-card__name">Fund Agent Dashboard</div>
+        <div class="project-card__desc">Autonomous AI venture capitalist on Monad. Multi-agent committee deliberation on every trade. 47 agents, 1,247 MON pooled, strategy builder with YAML config.</div>
+        <div class="project-card__tech">React · Monad · Multi-Agent · WebSockets</div>
+      </a>
+
+      <a href="https://frontend-zeta-one-75.vercel.app/" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Web3 · Hackathon</div>
+        <div class="project-card__name">SealForge</div>
+        <div class="project-card__desc">AI agent marketplace on Sui. Agents create encrypted intelligence reports via Seal threshold encryption, store on Walrus, sell on-chain autonomously.</div>
+        <div class="project-card__tech">Sui Move · React · Seal Encryption · Walrus</div>
+      </a>
+
+      <a href="https://arb-visual.vercel.app/" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Trading · Research</div>
+        <div class="project-card__name">Arbitrage Breakdown</div>
+        <div class="project-card__desc">Visual explainer of prediction market arbitrage — how $40M+ was extracted from cross-platform price discrepancies between Kalshi and Polymarket.</div>
+        <div class="project-card__tech">React · Data Visualization · Polymarket API</div>
+      </a>
+
+      <a href="https://fencing-quote-tool.vercel.app/" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Client Tool</div>
+        <div class="project-card__name">FenceQuote Pro</div>
+        <div class="project-card__desc">Map-based quoting tool for fencing businesses. Draw fence lines on satellite imagery, get instant cost estimates with material presets.</div>
+        <div class="project-card__tech">React · Mapbox · Geospatial · Custom Pricing</div>
+      </a>
+
+      <a href="https://higbrokes.up.railway.app/" target="_blank" class="project-card">
+        <span class="project-card__arrow">↗</span>
+        <div class="project-card__tag">Game</div>
+        <div class="project-card__name">Higbrokes</div>
+        <div class="project-card__desc">Browser-based game built and deployed on Railway. Because sometimes you just build something fun.</div>
+        <div class="project-card__tech">JavaScript · Railway</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section">
+    <div class="section__label">Why Agent Systems</div>
+    <p class="why">
+      I've spent years building autonomous agents that handle real money 
+      with no human in the loop. That forces you to think about <em>safety, 
+      failure modes, observability, and guardrails</em> as survival — not theory. 
+      The hardest part of agent systems isn't the AI. It's making sure the AI 
+      doesn't break things at 3am when nobody's watching. That's the problem 
+      I want to solve at scale.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer__text">Mumbai, India · Remote · Available now</span>
+    <a href="mailto:justinlord@empusaai.com" class="footer__cta">GET IN TOUCH</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
